@@ -23,12 +23,15 @@ En ligne de commande on souhaite :
 
 4. **Téléchargement de plusieurs images :**
    - Téléchargez les images Docker officielles pour MySQL et Redis sur votre machine.
+   ```
+   docker pull mysql 
+   docker pull redis
+   ```
 
 5. **Liste d'images après téléchargement :**
    - Affichez à nouveau la liste des images Docker sur votre machine pour vérifier que les images de MySQL et Redis ont été téléchargées avec succès.
    ```
-   docker pull mysql 
-   docker pull redis
+   docker images
    ```
 
 6. **Affichage détaillé d'une image :**
