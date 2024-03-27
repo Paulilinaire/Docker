@@ -1,0 +1,20 @@
+# Image de base
+FROM alpine
+
+LABEL version="0.1"
+
+# Définir un répertoire de travail (du côté conteneur)
+WORKDIR /root
+
+# Copier le répertoire courant vers le workdir 
+COPY . . 
+
+# Lancement d'une commande
+RUN apk update && apk add nano
+
+#Définir la commande par défaut (c'est à dire la commande qui sera executer au mmoment où le user fera docker run imagePauline)
+CMD ["cat", "monfichier.txt"]
+
+#Une fois dockerfile effectué, on peut créer notre image dans le terminal en effectuant ces commandes:
+# -> docker build -t demoone .
+# -> docker run docker run --name demofirstdockerfile -it demoone sh (pour tester si image fonctionne)
