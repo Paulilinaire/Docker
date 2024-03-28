@@ -13,6 +13,7 @@ COPY . .
 RUN apk update && apk add nano
 
 #Définir la commande par défaut (c'est à dire la commande qui sera executer au mmoment où le user fera docker run imagePauline)
+#Dernière commande à écrire dans un docerfile (avec EntryPoint)
 CMD ["cat", "monfichier.txt"]
 
 #Une fois dockerfile effectué, on peut créer notre image dans le terminal en effectuant ces commandes:
