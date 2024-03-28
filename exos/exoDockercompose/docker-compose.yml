@@ -29,6 +29,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
     depends_on:
       - db
+      # cela signifie que phpmyadmin a besoin du service db pour fonctionner et dépend de db, si db cesse de fonctionner, phpmyadmin ne fonctionnera plus 
     networks:
       - mysql-phpmyadmin
 
