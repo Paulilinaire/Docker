@@ -16,9 +16,10 @@ COPY . .
 RUN npm run build
 
 # Pour mettre notre application sur un serveur
-FROM nginx
+FROM nginx AS deploy
 
 COPY --from=build /app/build /usr/share/nginx/html
+#COPY --from=build /app/dist /usr/share/nginx/html avec react-vite
 
 EXPOSE 80
 

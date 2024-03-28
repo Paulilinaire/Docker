@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  # Database MySql
+  db:
+    image: mysql
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Lie le SQL script
+    restart: always
+    ports:
+      - "6033:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mydb
+    networks:
+      - mysql-phpmyadmin
+
+
+  # phpmyadmin
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    container_name: phpmyadmin_container
+    ports:
+      - "8090:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: password
+    depends_on:
+      - db
+    networks:
+      - mysql-phpmyadmin
+
+networks:
+  mysql-phpmyadmin:
+
+volumes:
+  db_data:
+

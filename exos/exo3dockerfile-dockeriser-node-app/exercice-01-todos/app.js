@@ -4,6 +4,8 @@ import { Todo } from "./models/Todo.js";
 
 const app = express();
 
+const PORT = process.env.PORT || 3001 ;
+
 // Classe d'accès aux données
 const todoDao = new TodoDao();
 
@@ -64,7 +66,7 @@ app.get('/todos/search/:search', (req, res) => {
     res.json(todoDao.searchByTitle(req.params.search));
 });
 
-app.listen(3001, () => {
+app.listen(PORT, () => {
     todoDao.readFile();
     console.log('http://127.0.0.1:3001');
 });

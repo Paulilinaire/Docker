@@ -1,0 +1,23 @@
+FROM  node
+
+WORKDIR /app
+
+ENV PORT=3001 
+# cette ligne est importante car dans app.js le PORT = process.env.PORT, il faut donc définit la variable d'env
+
+COPY package*.json ./ 
+
+RUN npm install
+
+#1er point : le repertoire de la machine locale, 2eme point : le repertoire du conteneur
+COPY . .
+
+EXPOSE ${PORT}
+
+CMD [ "node", "app.js" ]
+
+# et dans le terminal : pour contruisre l'image puis la lancer
+# docker build --no-cache -t nodeapp .
+# docker run --name containernode -p 5000:3001 -d nodeapp
+# ou
+# docker run --name containernode2 -e PORT:5003 -d nodeapp     
