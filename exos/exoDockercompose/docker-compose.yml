@@ -39,3 +39,6 @@ networks:
 volumes:
   db_data:
 
+# docker compose up -d
+# docker compose down
+
