@@ -1,0 +1,30 @@
+# Image de départ, build étant le nom de l'image
+FROM  node AS build 
+
+WORKDIR /app
+
+# Copie de package.json and package-lock.json car détiennent nos dépendances 
+COPY package*.json ./ 
+
+# Installatation des dépendances
+RUN npm install 
+
+# Copier le répertoire courant vers le workdir 
+COPY . .
+
+# Build de l'application
+RUN npm run build
+
+# Pour mettre notre application sur un serveur
+FROM nginx AS deploy
+
+COPY --from=build /app/build /usr/share/nginx/html
+#COPY --from=build /app/dist /usr/share/nginx/html avec react-vite
+
+EXPOSE 3000
+
+CMD ["nginx","-g","daemon off;"]
+
+# et dans le terminal
+# docker build --no-cache -t reactapp .
+# docker run --name containerreact -p 8085:80 -d reactapp
